@@ -1,3 +1,5 @@
+-- This analysis utilized the following Superstore dataset:
+
 CREATE TABLE superstore (
     item_id INTEGER PRIMARY KEY,
     item_name TEXT,
@@ -25,23 +27,26 @@ VALUES
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
     
-    
--- © Copyright 2025 Break Into Tech  --
+
+-- Analysis:
 
 -- Items ordered by price
 SELECT price
 FROM superstore
 ORDER BY price
 ;
+
 -- The average item price
 SELECT AVG(price)
 FROM superstore
 ;
+
 -- The highest price of kitchen supply items
 SELECT MAX(price)
 FROM superstore
 WHERE category = "Kitchen Supplies"
 ;
+
 -- The number of premium coffee makers in stock
 SELECT stock_quantity
 FROM superstore
