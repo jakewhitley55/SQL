@@ -60,9 +60,9 @@ ON reservations.hotel=hotels.hotel_id
  ;
 
  -- Custom Query: List all the VIPs staying at the Marriott hotel.
- SELECT vips.first_name,
- vips.last_name
- FROM vips
+SELECT vips.first_name,
+vips.last_name
+FROM vips
 INNER JOIN reservations
 ON vips.member_id=reservations.member_id
 INNER JOIN hotels
