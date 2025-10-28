@@ -50,7 +50,7 @@ ON reservations.hotel=hotels.hotel_id
  ORDER BY hotels.hotel_name
  ;
 
- -- Custom Query: List the VIPs (full name), and their association, that are associated with the government.
+ -- Custom Query: List the VIPs (full name), and their specific association, that are associated with the government.
  SELECT vips.first_name,
  vips.last_name,
  vips.association
