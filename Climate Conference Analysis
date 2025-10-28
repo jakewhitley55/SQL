@@ -1,0 +1,71 @@
+Climate Conference Project
+Database: https://www.db-fiddle.com/f/pxMci1sLL945KHKYvpe9W6/1
+
+
+-- LEFT JOIN: List all VIPs (full name) and the hotels they are staying at, including VIPs who may not be staying at a hotel.
+SELECT vips.first_name,
+vips.last_name,
+hotels.hotel_name
+FROM vips
+LEFT JOIN reservations
+ON vips.member_id=reservations.member_id
+LEFT JOIN hotels
+ON reservations.hotel=hotels.hotel_id
+;
+
+-- SELF JOIN: List all VIPs who provide feedback to another VIP, showing each of their (full) names. Order by the reviewer's member ID.
+ SELECT v1.member_id,
+ v1.first_name reviewer_first,
+ v1.last_name reviewer_last,
+ v2.first_name recipient_first,
+ v2.last_name recipient_last
+ FROM vips v1
+ INNER JOIN vips v2
+ ON v1.member_id=v2.provides_feedback_to
+ ORDER BY v1.member_id
+ ;
+
+ -- INNER JOIN: List the VIPs who are presenting at an event and what that event is. Order by the event (alphabetical order).
+ SELECT vips.first_name,
+ vips.last_name,
+ events.event_name
+ FROM vips
+ INNER JOIN events
+ ON vips.event=events.event_id
+ ORDER BY events.event_name ASC
+ ;
+
+ -- Multiple JOINs: List the VIPs (full name) who are presenting at a climate change event and what hotel they are staying at. Order by the hotel names (alphabetical order).
+ SELECT vips.first_name,
+ vips.last_name,
+ hotels.hotel_name
+ FROM vips
+ INNER JOIN events
+ ON vips.event=events.event_id
+ INNER JOIN reservations
+ ON vips.member_id=reservations.member_id
+ INNER JOIN hotels
+ ON reservations.hotel=hotels.hotel_id
+ WHERE events.event_name LIKE '%Climate Change%'
+ ORDER BY hotels.hotel_name
+ ;
+
+ -- Custom Query: List the VIPs (full name), and their association, that are associated with the government.
+ SELECT vips.first_name,
+ vips.last_name,
+ vips.association
+ FROM vips
+ WHERE vips.assoc_type='government'
+ ORDER BY vips.last_name
+ ;
+
+ -- Custom Query: List all the VIPs staying at the Marriott hotel.
+ SELECT vips.first_name,
+ vips.last_name
+ FROM vips
+INNER JOIN reservations
+ON vips.member_id=reservations.member_id
+INNER JOIN hotels
+ON reservations.hotel=hotels.hotel_id
+WHERE hotels.hotel_name='Marriott'
+;
