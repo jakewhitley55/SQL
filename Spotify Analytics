@@ -28,7 +28,7 @@ time_signature integer NOT NULL
 
 #Next, I explored the data using the following SQL. 
 
-# First, I determined the 10 most popular songs?
+# First, I determined the 10 most popular songs.
 SELECT track_name
 FROM BIT_DB.Spotifydata
 ORDER BY popularity DESC
